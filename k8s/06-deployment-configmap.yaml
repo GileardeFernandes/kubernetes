@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goserver
+  labels:
+    app: goserver
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: goserver
+  template:
+    metadata:
+      name: goserver
+      labels:
+        app: goserver
+    spec:
+      containers:
+        - name: goserver
+          image: micaelfernandes7/hello-go:v5
+          env:
+           - name: NAME
+             valueFrom:
+              configMapKeyRef:
+                name: goserver-env
+                key: NAME
+           - name: AGE
+             valueFrom:
+              configMapKeyRef:
+                name: goserver-env
+                key: AGE
+          volumeMounts:
+            - mountPath: "/go/myfamily"
+              name: config
+
+
+      volumes:
+        - name: config
+          configMap:
+            name: configmap-family
+            items:
+              - key: members
+                path: "family.txt"
