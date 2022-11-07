@@ -48,7 +48,7 @@ func Healthz(w http.ResponseWriter, r *http.Request) {
 
 	var duration = time.Since(temp)
 
-	if duration.Seconds() < 10 || duration.Seconds() > 30 {
+	if duration.Seconds() < 10 {
 		w.WriteHeader(500)
 		w.Write([]byte(fmt.Sprint("Duration:", duration.Seconds())))
 	} else {
