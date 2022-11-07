@@ -1,5 +1,7 @@
 package main
 
+
+
 import (
 	"fmt"
 	"io/ioutil"
@@ -24,7 +26,7 @@ func Hello(w http.ResponseWriter, r *http.Request) {
 
 	name := os.Getenv("NAME")
 	age := os.Getenv("AGE")
-	fmt.Fprintf(w, "Hello, I'm %s. I'm %s.", name, age)
+	fmt.Fprintf(w, "Hello my brother, I'm %s. I'm %s.", name, age)
 	//w.Write([]byte("<h1> Hello Fullcycle Imge V2</h1>"))
 }
 
